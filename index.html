@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" async=1>
+        ; (function (p, l, o, w, i, n, g) { if (!p[i]) { p.GlobalSnowplowNamespace = p.GlobalSnowplowNamespace || []; p.GlobalSnowplowNamespace.push(i); p[i] = function () { (p[i].q = p[i].q || []).push(arguments) }; p[i].q = p[i].q || []; n = l.createElement(o); g = l.getElementsByTagName(o)[0]; n.async = 1; n.src = w; g.parentNode.insertBefore(n, g) } }(window, document, "script", "sp.js", "snowplow"));
+    </script>
+    <script>
+        window.snowplow('newTracker', 'sp1', 'http://35.222.144.175:8080/', {
+            appId: 'sp-test'
+        })
+    </script>
+</head>
+
+<body>
+    OrgID: <input type="text" id="orgid" value="1">
+    <h3>Open Popup:</h3>
+    <button onclick="openPopup()">Click</button>
+    </br>
+    Donation Value: <input type="text" id="donval" value="100">
+    <h3>Confirm Donation Options:</h3>
+    <button onclick="firstStep()">Click</button>
+    </br>
+    </br>
+    </br>
+
+    UserID: <input type="text" id="userid" value="12345">
+    Email: <input type="text" id="useremail" value="xxx@xxx.com">
+    <button onclick="identFun()">Identify</button>
+    </br>
+    </br>
+
+
+    <h3>Confirm Anonymity:</h3>
+    <button onclick="anonymity()">Click</button>
+    </br>
+    <h3>Select Payment Option:</h3>
+    <button onclick="payoption()">Click</button>
+    </br>
+    <h3>Donate:</h3>
+    <button onclick="donate()">Click</button>
+
+
+    <script>
+        function openPopup() {
+
+            snowplow('trackStructEvent', {
+                category: 'donation',
+                action: 'Open Popup'
+            });
+        }
+        function firstStep() {
+            snowplow('trackStructEvent', {
+                category: 'donation',
+                action: 'Confirm Donation Values'
+            });
+        }
+        function anonymity() {
+            snowplow('trackStructEvent', {
+                category: 'donation',
+                action: 'Confirm Anonymity'
+            });
+        }
+        function payoption() {
+            snowplow('trackStructEvent', {
+                category: 'donation',
+                action: 'Select Payment Option'
+            });
+        }
+        function donate() {
+            snowplow('trackStructEvent', {
+                category: 'donation',
+                action: 'Donate'
+            });
+        }
+        function identFun() {
+            var userId = document.getElementById("userid").value;
+            snowplow('setUserId', userId);
+        }
+    </script>
+
+</body>
+
+</html>
